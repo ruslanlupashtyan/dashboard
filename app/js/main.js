@@ -1,9 +1,3 @@
-// toggle sections
-let links = document.querySelectorAll(".links a");
-links.forEach((el) => {
-  el.addEventListener("click", checkActive, false);
-});
-
 const checkActive = function () {
   document.querySelector(".links a.active").classList.remove("active");
   this.classList.add("active");
@@ -17,6 +11,14 @@ const classHelper = function (selector, isToggle, clas) {
   }
 };
 
+// toggle sections
+let links = document.querySelectorAll(".links a");
+console.log(links);
+links.forEach((el) => {
+  el.addEventListener("click", checkActive, false);
+});
+
+// mobile menu
 if (window.innerWidth <= 768) {
   document.querySelector("#hamburger").addEventListener("click", function () {
     classHelper(".aside", true, "active");
