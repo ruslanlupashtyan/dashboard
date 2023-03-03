@@ -1,0 +1,31 @@
+/*
+  example:
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #fff
+  }
+  
+  h1 {
+    @include font(128, 122, 500);
+  
+    @include media-breakpoint-down(md) {
+      @include font(56, 53, 500);
+    }
+  }
+  
+  h2 {
+    @include font(100, 96, 500);
+  
+    @include media-breakpoint-down(md) {
+      @include font(44, 42, 500);
+    }
+  }
+  
+  p {
+    font-family: "BwMitga";
+  }
+*/

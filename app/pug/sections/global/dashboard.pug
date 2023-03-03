@@ -1,0 +1,170 @@
+-
+  var nav = [
+    {
+      title: 'Product', 
+      icon: '../../../images/svg/3d-square.svg',
+      link: '#'
+    }, 
+    {
+      title: 'Customers',
+      icon: '../../../images/svg/user-square.svg',
+      link: '#'
+    }, 
+    {
+      title: 'Income',
+      icon: '../../../images/svg/wallet-money.svg',
+      link: '#'
+    },
+    {
+      title: 'Promote', 
+      icon: '../../../images/svg/discount-shape.svg',
+      link: '#'
+    },
+    {
+      title: 'help', 
+      icon: '../../../images/svg/message-question.svg',
+      link: '#'
+    }
+  ],
+  tbody = [
+    {
+      name: 'Jane Cooper',
+      company: 'Microsoft',
+      phone: '(225) 555-0118',
+      email: 'jane@microsoft.com',
+      country: 'United States',
+      status: true,
+    },
+    {
+      name: "Floyd Miles",
+      company: "Yahoo",
+      phone: "(205) 555-0100",
+      email: "floyd@yahoo.com",
+      country: "Kiribati",
+      status: false 
+    },
+    {
+      name: "Ronald Richards",
+      company: "Adobe",
+      phone: "(302) 555-0107",
+      email: "ronald@adobe.com",
+      country: "Israel",
+      status: false
+    },
+    {
+      name: "Marvin McKinney",
+      company: "Tesla",
+      phone: "(252) 555-0126",
+      email: "marvin@tesla.com",
+      country: "Iran",
+      status: true
+    },
+    {
+      name: "Jerome Bell",
+      company: "Google",
+      phone: "(629) 555-0129",
+      email: "jerome@google.com",
+      country: "Réunion",
+      status: true
+    },
+    {
+      name: "Kathryn Murphy",
+      company: "Microsoft",
+      phone: "(406) 555-0120",
+      email: "kathryn@microsoft.com",
+      country: "Curaçao",
+      status: true
+    },
+    {
+      name: "Jacob Jones",
+      company: "Yahoo",
+      phone: "(208) 555-0112",
+      email: "jacob@yahoo.com",
+      country: "Brazil",
+      status: true
+    },
+    {
+      name: "Kristin Watson",
+      company: "Facebook",
+      phone: "(704) 555-0127",
+      email: "kristin@facebook.com",
+      country: "Åland Islands",
+      status: false
+    },
+  ],
+  thead = ['Customer Name', 'Company', 'Phone Number', 'Email', 'Country', 'Status']
+
+aside.aside-wrapper
+  .aside
+    .aside__logo.logo.flex.ai-center
+      include ../../../images/svg/logo.svg
+      p.logo__title Dashboard
+        span v.01
+    p.aside__current-page.with-icon(style=`--bg-image:url("../../../images/svg/key-square.svg")`) Dashboard 
+    nav.asside__links.links
+      ul
+        each item, i in nav 
+          li
+            a.with-icon(href= item.link, class= i===0? "active" : "", style=`--bg-image:url("${item.icon}")`)= item.title
+    .acide__account.account.flex.ai-center
+      .account__image 
+        img(src="../../../images/Ellipse 8.png", alt="")
+      .account__text 
+        p Evano
+        p Project Manager
+main.main
+  .main__title 
+    //- (👋)
+    p Hello Evano &#128075;, 
+  .main__frame.frame 
+    .frame__head.frame-head.flex-sm.jc-between.ia-center 
+      .frame-head__text 
+        p All customers
+        p Active Members
+      .frame-head__search.flex.ai-center
+        include ../../../images/svg/search.svg
+        input(type="search", name="", placeholder="Search")
+    .table-wrapper
+      table.frame__body.table 
+        thead 
+          tr
+            each head in thead
+              th= head
+        tbody
+          each item in tbody
+            tr
+              td= item.name
+              td= item.company
+              td= item.phone
+              td= item.email
+              td= item.country
+              if item.status
+                td.active
+                  .status Active
+              else 
+                td.unactive
+                  .status Inactive
+    .main__footer.flex-md.jc-between 
+      p Showing data 1 to 8 of  256K entries
+      ul.switch-buttons.flex.ai-center.jc-center
+        li 
+          include ../../../images/svg/btn-arrow-left.svg
+        li.page-count.active
+          a.flex.ai-center.jc-center(href="#") 1
+        li.page-count
+          a.flex.ai-center.jc-center(href="#") 2
+        li.page-count
+          a.flex.ai-center.jc-center(href="#") 3
+        li.page-count
+          a.flex.ai-center.jc-center(href="#") 4
+        li.page-count.hidden
+          a.flex.ai-center.jc-center(href="#") ...
+        li.page-count
+          a.flex.ai-center.jc-center(href="#") 40
+        li 
+          include ../../../images/svg/btn-arrow-right.svg
+.mobile-button#hamburger
+  span.line
+  span.line
+  span.line
+
