@@ -67,12 +67,11 @@
       pointer-events: none;
       background-color: $blue-color;
       color: #fff;
-      &::after,
       &::before {
-        path {
-          stroke: #fff;
-          fill: #fff;
-        }
+        background-image: var(--bg-image-white);
+      }
+      &::after {
+        content: url(../../../images/svg/arrow-white.svg);
       }
     }
   }
@@ -294,6 +293,7 @@
 }
 .page-count {
   position: relative;
+  line-height: 24px;
   &.active {
     background-color: #5932ea;
     color: #fff;

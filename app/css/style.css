@@ -740,9 +740,11 @@ body.hidden {
   background-color: #5932ea;
   color: #fff;
 }
-.links a.active::after path, .links a.active::before path {
-  stroke: #fff;
-  fill: #fff;
+.links a.active::before {
+  background-image: var(--bg-image-white);
+}
+.links a.active::after {
+  content: url(../../../images/svg/arrow-white.svg);
 }
 
 .account {
@@ -1011,6 +1013,7 @@ body.hidden {
 
 .page-count {
   position: relative;
+  line-height: 24px;
 }
 .page-count.active {
   background-color: #5932ea;

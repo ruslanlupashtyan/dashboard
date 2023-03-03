@@ -3,26 +3,31 @@
     {
       title: 'Product', 
       icon: '../../../images/svg/3d-square.svg',
+      icon_white: '../../../images/svg/3d-square-white.svg',
       link: '#'
     }, 
     {
       title: 'Customers',
       icon: '../../../images/svg/user-square.svg',
+      icon_white: '../../../images/svg/user-square-white.svg',
       link: '#'
     }, 
     {
       title: 'Income',
       icon: '../../../images/svg/wallet-money.svg',
+      icon_white: '../../../images/svg/wallet-money-white.svg',
       link: '#'
     },
     {
       title: 'Promote', 
       icon: '../../../images/svg/discount-shape.svg',
+      icon_white: '../../../images/svg/discount-shape-white.svg',
       link: '#'
     },
     {
       title: 'help', 
       icon: '../../../images/svg/message-question.svg',
+      icon_white: '../../../images/svg/message-question-white.svg',
       link: '#'
     }
   ],
@@ -105,7 +110,7 @@ aside.aside-wrapper
       ul
         each item, i in nav 
           li
-            a.with-icon(href= item.link, class= i===0? "active" : "", style=`--bg-image:url("${item.icon}")`)= item.title
+            a.with-icon(href= item.link, class= i===0? "active" : "", style=`--bg-image:url("${item.icon}"); --bg-image-white:url("${item.icon_white}")`)= item.title
     .acide__account.account.flex.ai-center
       .account__image 
         img(src="../../../images/Ellipse 8.png", alt="")
