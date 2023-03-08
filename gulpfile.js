@@ -12,21 +12,17 @@ const webp = require("gulp-webp");
 const sourcemaps = require("gulp-sourcemaps");
 const dependents = require("gulp-dependents");
 const cached = require("gulp-cached");
+const purgecss = require("gulp-purgecss");
+const cssfont64 = require("gulp-cssfont64");
 
 function browsersync() {
   browserSync.init({
     server: {
       baseDir: "app/",
     },
-    port: 2224,
+    port: 2222,
   });
 }
-
-// function convertImageToWEBP () {
-// 	return (['app/images/**/*.png', 'app/images/**/*.jpg', 'app/images/**/*.jpeg'])
-// 	.pipe(webp())
-// 	.pipe(dest('dist/'))
-// }
 
 function cleanDist() {
   return del("dist");
@@ -53,10 +49,11 @@ function images() {
 
 function scripts() {
   return src([
-    "node_modules/jquery/dist/jquery.js",
+    // "node_modules/jquery/dist/jquery.js",
     // 'node_modules/bootstrap/dist/js/bootstrap.js', // uncomment only use bootstrap
     "app/js/*.js",
     "!app/js/main.min.js",
+    "!app/js/font-loader.js",
   ])
     .pipe(sourcemaps.init())
     .pipe(
@@ -84,36 +81,43 @@ function pugToHTML() {
 }
 
 function styles() {
-  return (
-    src("app/scss/**/*.scss")
-      .pipe(cached("scss"))
-      .pipe(dependents())
-      .pipe(sourcemaps.init())
-      .pipe(scss({ outputStyle: "expanded" }).on("error", scss.logError))
-      .pipe(
-        autoprefixer({
-          overrideBrowserslist: ["last 15 version"],
-          grid: true,
-        })
-      )
-      .pipe(sourcemaps.write("."))
-      // .pipe(concat('style.min.css'))
-      .pipe(dest("app/css"))
-      .pipe(browserSync.stream())
-  );
+  return src("app/scss/**/*.scss")
+    .pipe(cached("scss"))
+    .pipe(dependents())
+    .pipe(sourcemaps.init())
+    .pipe(scss({ outputStyle: "compressed" }).on("error", scss.logError))
+    .pipe(
+      autoprefixer({
+        overrideBrowserslist: ["last 15 version"],
+        grid: true,
+      })
+    )
+    .pipe(sourcemaps.write("."))
+    .pipe(dest("app/css"))
+    .pipe(browserSync.stream());
 }
 
 function dist() {
   return src(
     [
-      "app/css/style.css",
-      "app/fonts/**/*",
-      "app/js/main.js",
+      "app/css/*.css",
+      // "app/fonts/**/*",
+      // "app/js/main.js",
+      "app/js/**/*.js",
+      "!app/js/main.js",
       "app/**/*.html",
-      "app/videos/**.*",
+      "app/images/**/**.*",
+      // "app/videos/**.*",
     ],
     { base: "app" }
   ).pipe(dest("dist"));
+}
+
+function fontsConvert() {
+  return src(["app/fonts/*.woff", "app/fonts/*.woff2"])
+    .pipe(cssfont64())
+    .pipe(dest("app/css"))
+    .pipe(browserSync.stream());
 }
 
 function watching() {
@@ -122,6 +126,7 @@ function watching() {
   watch(["app/*.html"]).on("change", browserSync.reload);
   watch(["app/**/*.pug"]).on("change", browserSync.reload);
   watch(["app/**/*.pug"], pugToHTML);
+  watch("app/fonts/**/*", fontsConvert);
 }
 
 exports.styles = styles;
@@ -132,4 +137,5 @@ exports.pugToHTML = pugToHTML;
 exports.default = parallel(styles, scripts, browsersync, watching);
 exports.build = series(cleanDist, styles, scripts, pugToHTML, dist);
 exports.images = images;
+exports.fontsConvert = fontsConvert;
 exports.cleandist = cleanDist;

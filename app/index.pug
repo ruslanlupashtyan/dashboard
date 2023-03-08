@@ -1,7 +1,180 @@
 - var title = 'AllureDEV'
+-
+  var nav = [
+    {
+      title: 'Product', 
+      icon: '../images/svg/3d-square.svg',
+      icon_white: '../images/svg/3d-square-white.svg',
+      link: '#'
+    }, 
+    {
+      title: 'Customers',
+      icon: '../images/svg/user-square.svg',
+      icon_white: '../images/svg/user-square-white.svg',
+      link: '#'
+    }, 
+    {
+      title: 'Income',
+      icon: '../images/svg/wallet-money.svg',
+      icon_white: '../images/svg/wallet-money-white.svg',
+      link: '#'
+    },
+    {
+      title: 'Promote', 
+      icon: '../images/svg/discount-shape.svg',
+      icon_white: '../images/svg/discount-shape-white.svg',
+      link: '#'
+    },
+    {
+      title: 'help', 
+      icon: '../images/svg/message-question.svg',
+      icon_white: '../images/svg/message-question-white.svg',
+      link: '#'
+    }
+  ],
+  tbody = [
+    {
+      name: 'Jane Cooper',
+      company: 'Microsoft',
+      phone: '(225) 555-0118',
+      email: 'jane@microsoft.com',
+      country: 'United States',
+      status: true,
+    },
+    {
+      name: "Floyd Miles",
+      company: "Yahoo",
+      phone: "(205) 555-0100",
+      email: "floyd@yahoo.com",
+      country: "Kiribati",
+      status: false 
+    },
+    {
+      name: "Ronald Richards",
+      company: "Adobe",
+      phone: "(302) 555-0107",
+      email: "ronald@adobe.com",
+      country: "Israel",
+      status: false
+    },
+    {
+      name: "Marvin McKinney",
+      company: "Tesla",
+      phone: "(252) 555-0126",
+      email: "marvin@tesla.com",
+      country: "Iran",
+      status: true
+    },
+    {
+      name: "Jerome Bell",
+      company: "Google",
+      phone: "(629) 555-0129",
+      email: "jerome@google.com",
+      country: "Réunion",
+      status: true
+    },
+    {
+      name: "Kathryn Murphy",
+      company: "Microsoft",
+      phone: "(406) 555-0120",
+      email: "kathryn@microsoft.com",
+      country: "Curaçao",
+      status: true
+    },
+    {
+      name: "Jacob Jones",
+      company: "Yahoo",
+      phone: "(208) 555-0112",
+      email: "jacob@yahoo.com",
+      country: "Brazil",
+      status: true
+    },
+    {
+      name: "Kristin Watson",
+      company: "Facebook",
+      phone: "(704) 555-0127",
+      email: "kristin@facebook.com",
+      country: "Åland Islands",
+      status: false
+    },
+  ],
+  thead = ['Customer Name', 'Company', 'Phone Number', 'Email', 'Country', 'Status']
+
 doctype html
 html(lang="en")
-    include pug/sections/global/head
-    body.flex
-      include pug/sections/global/dashboard
-      include pug/sections/global/footer
+  include pug/sections/global/head
+  body
+    main.main.flex
+      aside.aside
+        .aside__logo.logo
+          p.logo__title(style=`--bg-image:url("../images/svg/logo.svg")`) Dashboard
+        p.aside__current.aside_tab(style=`--bg-image:url("../images/svg/key-square.svg")`) Dashboard 
+        nav.aside__links
+          ul.links
+            each item, i in nav 
+              li.links__item.aside_tab.aside_link.asideLink(style=`--bg-image:url("${item.icon}"); --bg-image-white:url("${item.icon_white}")`, class= i===0? "active" : "")
+                a(href= item.link)= item.title
+        .acide__account.account
+          figure.account__image.flex.ai-center
+            img(src="images/ellipse.png", alt="user")
+            figcaption.account__text
+              p.title Evano
+              p.subtitle Project Manager
+
+      article.article.closeMobileMenu
+        h1.article__title Hello Evano &#128075;, 
+        section.frame 
+          .frame_head.flex-sm.jc-between.ai-center 
+            .frame_head__text.frame_text
+              p.frame_text__title All customers
+              p.frame_text__subtitle Active Members
+            .frame_head__search.search
+              label.search__label(for="search")
+                input.search__input(type="search", id="search" placeholder="Search")
+          .frame_body
+            table.table 
+              thead.table__head.t_head
+                tr.table_head__row.row
+                  each head in thead
+                    th.row_item= head
+              tbody.table__body.t_body
+                each item in tbody
+                  tr.table_body__row.row
+                    td.row_item= item.name
+                    td.row_item= item.company
+                    td.row_item= item.phone
+                    td.row_item= item.email
+                    td.row_item= item.country
+                    if item.status
+                      td.row_item.active
+                        .status Active
+                    else 
+                      td.row_item.unactive
+                        .status Inactive
+
+          .frame__footer.flex-md.jc-between 
+            p.descr Showing data 1 to 8 of  256K entries
+            ul.tabs.flex.ai-center.jc-center
+              li.tabs__button.tab_button
+                include images/svg/btn-arrow-left.svg
+              li.tabs__button.tab_button.active
+                a.flex.ai-center.jc-center(href="#") 1
+              li.tabs__button.tab_button
+                a.flex.ai-center.jc-center(href="#") 2
+              li.tabs__button.tab_button
+                a.flex.ai-center.jc-center(href="#") 3
+              li.tabs__button.tab_button
+                a.flex.ai-center.jc-center(href="#") 4
+              li.tabs__button.tab_button.hidden
+                a.flex.ai-center.jc-center(href="#") ...
+              li.tabs__button.tab_button
+                a.flex.ai-center.jc-center(href="#") 40
+              li.tabs__button.tab_button
+                include images/svg/btn-arrow-right.svg
+
+
+      .mobile_button.openMobileMenu
+        span.line
+        span.line
+        span.line
+    script(src="js/main.min.js") 
