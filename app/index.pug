@@ -104,22 +104,8 @@ doctype html
 html(lang="en")
   include pug/sections/global/head
   body
-    main.main.flex
-      aside.aside
-        .aside__logo.logo
-          p.logo__title(style=`--bg-image:url("../images/svg/logo.svg")`) Dashboard
-        p.aside__current.aside_tab(style=`--bg-image:url("../images/svg/key-square.svg")`) Dashboard 
-        nav.aside__links
-          ul.links
-            each item, i in nav 
-              li.links__item.aside_tab.aside_link.asideLink(style=`--bg-image:url("${item.icon}"); --bg-image-white:url("${item.icon_white}")`, class= i===0? "active" : "")
-                a(href= item.link)= item.title
-        .acide__account.account
-          figure.account__image.flex.ai-center
-            img(src="images/ellipse.png", alt="user")
-            figcaption.account__text
-              p.title Evano
-              p.subtitle Project Manager
+    main.main.flex.flex-reverse
+      
 
       article.article.closeMobileMenu
         h1.article__title Hello Evano &#128075;, 
@@ -172,6 +158,21 @@ html(lang="en")
               li.tabs__button.tab_button
                 include images/svg/btn-arrow-right.svg
 
+      aside.aside
+        .aside__logo.logo
+          p.logo__title(style=`--bg-image:url("../images/svg/logo.svg")`) Dashboard
+        p.aside__current.aside_tab(style=`--bg-image:url("../images/svg/key-square.svg")`) Dashboard 
+        nav.aside__links
+          ul.links
+            each item, i in nav 
+              li.links__item.aside_tab.aside_link.asideLink(style=`--bg-image:url("${item.icon}"); --bg-image-white:url("${item.icon_white}")`, class= i===0? "active" : "")
+                a(href= item.link)= item.title
+        .acide__account.account
+          figure.account__image.flex.ai-center
+            img(src="images/ellipse.png", alt="user")
+            figcaption.account__text
+              p.title Evano
+              p.subtitle Project Manager
 
       .mobile_button.openMobileMenu
         span.line
